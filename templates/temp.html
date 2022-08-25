@@ -3,12 +3,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <link rel="icon" type="image/png" href="https://telegra.ph/file/e2455272b9ec28c09500e.png">
+        <link rel="icon" type="image/png" href="https://img.icons8.com/ios-filled/100/000000/sdtv.png">
         <link rel="stylesheet" href="https://cdn.plyr.io/3.6.12/plyr.css" />
         <script "text/javascript" src="https://cdn.plyr.io/3.6.12/plyr.js"></script>
-	    <script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Poppins|Quattrocento+Sans" rel="stylesheet"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel='stylesheet' href='https://unpkg.com/plyr@3/dist/plyr.css'>
+        <link rel="stylesheet" href="https://siddwap.github.io/integrate-vast/style.css">
         <title>{{ video_name }}</title>
 	<!-- Help us to earn from your site!, if you dont want then just remove the below line -->
         
@@ -34,7 +35,7 @@
             }
             #logo {
                 position: fixed;
-                background-image: url("https://telegra.ph/file/e2455272b9ec28c09500e.png");
+                background-image: url("https://img.icons8.com/ios-filled/100/000000/sdtv.png");
                 background-size: cover;
                 background-position: center;
             }
@@ -194,62 +195,48 @@
 
         </style>
     </head>
-    <script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
-<video id="video-id"><source src="{{ video_url }}" type="video/mp4" />
-<script>
-    var myFP = fluidPlayer(
-        'video-id',	{
-	"layoutControls": {
-		"controlBar": {
-			"autoHideTimeout": 3,
-			"animated": true,
-			"autoHide": true
-		},
-		"htmlOnPauseBlock": {
-			"html": null,
-			"height": null,
-			"width": null
-		},
-		"autoPlay": false,
-		"mute": false,
-		"allowTheatre": true,
-		"playPauseAnimation": true,
-		"playbackRateEnabled": true,
-		"allowDownload": true,
-		"playButtonShowing": true,
-		"fillToContainer": true,
-		"posterImage": ""
-	},
-	"vastOptions": {
-		"adList": [
-			{
-				"roll": "preRoll",
-				"vastTag": "https://www.videosprofitnetwork.com/watch.xml?key=408c55564190656e0dc0f64c94e96389",
-				"adText": ""
-			},
-			{
-				"roll": "midRoll",
-				"vastTag": "https://www.videosprofitnetwork.com/watch.xml?key=408c55564190656e0dc0f64c94e96389",
-				"adText": ""
-			},
-			{
-				"roll": "postRoll",
-				"vastTag": "https://www.videosprofitnetwork.com/watch.xml?key=408c55564190656e0dc0f64c94e96389",
-				"adText": ""
-			},
-			{
-				"roll": "onPauseRoll",
-				"vastTag": "https://www.videosprofitnetwork.com/watch.xml?key=408c55564190656e0dc0f64c94e96389",
-				"adText": ""
-			}
-		],
-		"adCTAText": false,
-		"adCTATextPosition": ""
-	}
-});
-</script>
-
-
-       
+    <body>
+        <div id="loading" class="loading">
+            <div class="loading-text">
+                <span class="loading-text-words">S</span>
+                <span class="loading-text-words">D</span>
+                <span class="loading-text-words"> - </span><br>
+                <span class="loading-text-words">V</span>
+                <span class="loading-text-words">i</span>
+                <span class="loading-text-words">d</span>
+                <span class="loading-text-words">e</span>
+                <span class="loading-text-words">o</span>
+                <span class="loading-text-words">P</span>
+                <span class="loading-text-words">l</span>
+                <span class="loading-text-words">a</span>
+                <span class="loading-text-words">y</span>
+                <span class="loading-text-words">e</span>
+                <span class="loading-text-words">r</span>
+            </div>
+        </div>
+	 <script>
+            setTimeout(videovisible, 5000)
+            function videovisible() {
+                            document.getElementById('loading').style.display = 'none'
+                        }
+        </script>
+        <video controls crossorigin playsinline poster="https://siddwap.github.io/integrate-vast/sdPlayerPoster.webp">
+            <source src="{{ video_url }}" type="video/mp4" size="576">
+            <source src="{{ video_url }}" type="video/mp4" size="720">
+            <source src="{{ video_url }}" type="video/mp4" size="1080">
+        <!-- Fallback for browsers that don't support the <video> element -->
+        <a href="{{ video_url }}" download>Download</a>
+        </video>
+        <script src='https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Array.prototype.includes,CustomEvent,Object.entries,Object.values,URL'></script>
+        <script src='https://unpkg.com/plyr@3'></script>
+        <script  src="https://siddwap.github.io/integrate-vast/script.js"></script>
+    </div>
+        <div class="logo-container">
+            <a href="https://t.me/SdEducationFree" target="_blank" rel="noopener noreferrer" class="float" id="logo"></a>
+            <div class="label-container">
+                <i class="fa fa-play label-arrow"></i>
+                <div class="label-text">Telegram</div>
+            </div>
+        </div>   
     </body>
 </html>
