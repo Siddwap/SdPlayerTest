@@ -54,6 +54,8 @@ def checker_page():
         return brightcove()
     if chk_type.lower() == "jwplayer":
         return jw_payer()
+    if chk_type.lower() == "streamtape":
+        return streamtape()
     return 
 
 @app.route("/yt")
@@ -127,7 +129,7 @@ def jw_payer():
     )
 
 @app.route("/stream/<string(length=15):video_id>")
-def streamtape (video_id):
+def streamtape(video_id):
     try:
         video_id = request.args['id']
     except Exception as e:
