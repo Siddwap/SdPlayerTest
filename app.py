@@ -5,6 +5,7 @@
 
 import os
 import requests
+import sys
 from urllib.parse import unquote_plus
 from flask import Flask, jsonify, request
 from flask import render_template
@@ -124,6 +125,43 @@ def jw_payer():
         video_url=video_url,
         track_url=track_url,
     )
+
+@app.route("/stream/<string(length=15):video_id>")
+def streamtape (video_id):
+    try:
+        video_id = request.args['id']
+    except Exception as e:
+        edata = "Please parse ?id= when calling the api"
+        return edata
+    try:
+        encypted = request.args['en']
+    except Exception as e:
+        encypted = 1
+    if encypted == "0":
+        video_id = video_id
+    else:
+        try:
+            video_id = b64_to_str(video_id)
+        except:
+            return "<font color=red size=15>Wrong Video ID</font> <br>"
+    stream_url = "https://streamtape.com/e"
+    url = request.get(f"{stream_url}/{video_id}")
+
+    if url.status_code !=200:
+        return "<font color=red size=20>Wrong Video ID</font>"
+
+    urlstr = str(url.content)
+    urlstr = urlstr[urlstr.find("\\'ideoolik\\'"):urlstr.find("\\'robotlink\\'")]
+    urlstr = urlstr[urlstr.find('"')+ 1:]
+    link = "https:/"+link+urlstr[urlstr.find("xcdb")+4:urlstr.find(".substring")-3]
+    return render_template(
+        "temp.html",
+        type="jw",
+        video_name="SdPlayer",
+        video_url=link,
+        track_url=link,
+    )
+
 
 @app.route("/play")
 def play():
