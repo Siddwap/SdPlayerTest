@@ -152,12 +152,15 @@ def streamtape():
     urlstr = urlstr[urlstr.find("\\'ideoolik\\'"):urlstr.find("\\'robotlink\\'")]
     urlstr = urlstr[urlstr.find('"')+ 1:]
     link = "https:/"+link+urlstr[urlstr.find("xcdb")+4:urlstr.find(".substring")-3]
+    video_url = link
+    video_name = "SdPyayer"
+    track_url = video_url
     return render_template(
         "temp.html",
         type="jw",
-        video_name="SdPlayer",
-        video_url=link,
-        track_url=link,
+        video_name=video_name,
+        video_url=video_url,
+        track_url=track_url,
     )
 
 
