@@ -128,8 +128,8 @@ def jw_payer():
         track_url=track_url,
     )
 
-@app.route("/stream<string(length=15):video_id>")
-def streamtape(video_id):
+@app.route("/stream")
+def streamtape():
     try:
         video_id = request.args['id']
     except Exception as e:
