@@ -148,10 +148,6 @@ def streamtape():
             return "<font color=red size=15>Wrong Video ID</font> <br>"
     stream_url = "https://streamtape.com/e"
     url = request.get(f"{stream_url}/{video_id}")
-
-    if url.status_code !=200:
-        return "<font color=red size=20>Wrong Video ID</font>"
-
     urlstr = str(url.content)
     urlstr = urlstr[urlstr.find("\\'ideoolik\\'"):urlstr.find("\\'robotlink\\'")]
     urlstr = urlstr[urlstr.find('"')+ 1:]
