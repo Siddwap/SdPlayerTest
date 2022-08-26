@@ -146,11 +146,11 @@ def streamtape():
             video_id = b64_to_str(video_id)
         except:
             return "<font color=red size=15>Wrong Video ID</font> <br>"
-    stream_url = "https://streamtape.com/e"
-    url = request.get(f"{stream_url}/{video_id}")
+    url = requests.get(video_id)
     urlstr = str(url.content)
     urlstr = urlstr[urlstr.find("\\'ideoolik\\'"):urlstr.find("\\'robotlink\\'")]
     urlstr = urlstr[urlstr.find('"')+ 1:]
+    link = urlstr[:urlstr.find("")]
     link = "https:/"+link+urlstr[urlstr.find("xcdb")+4:urlstr.find(".substring")-3]
     video_url = link
     video_name = "SdPyayer"
