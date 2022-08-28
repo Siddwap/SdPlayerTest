@@ -156,7 +156,7 @@ def streamtape():
     video_name = "SdPyayer"
     track_url = video_url
     return render_template(
-        "temp.html",
+        "temp_ads.html",
         type="jw",
         video_name=video_name,
         video_url=video_url,
