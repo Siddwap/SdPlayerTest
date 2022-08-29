@@ -5,6 +5,7 @@
 
 import os
 import requests
+import re, requests
 import sys
 from urllib.parse import unquote_plus
 from flask import Flask, jsonify, request
@@ -56,6 +57,8 @@ def checker_page():
         return jw_payer()
     if chk_type.lower() == "streamtape":
         return streamtape()
+    if chk_type.lower() == "vu":
+        return vu()
     return 
 
 @app.route("/yt")
@@ -162,6 +165,42 @@ def streamtape():
         video_url=video_url,
         track_url=track_url,
     )
+
+@app.route("/vu")
+def vu():
+    try:
+        video_id = request.args['id']
+    except Exception as e:
+        edata = "Please parse ?id= when calling the api"
+        return edata
+    try:
+        encypted = request.args['en']
+    except Exception as e:
+        encypted = 1
+    if encypted == "0":
+        video_id = video_id
+    else:
+        try:
+            video_id = b64_to_str(video_id)
+        except:
+            return "<font color=red size=15>Wrong Video ID</font> <br>"
+    s = requests.Session()
+    data = s.get(video_url)
+    data = data.text
+    vidlinks = re.findall("sources(.*?).m3u8" , data)
+    vidlinks = vidlinks[0] + ".m3u8"
+    vidlinks = re.sub(r'.', '', vidlinks, count = 9)
+    video_url = vidlinks
+    video_name = "SdPyayer"
+    track_url = video_url
+    return render_template(
+        "temp_ads.html",
+        type="jw",
+        video_name=video_name,
+        video_url=video_url,
+        track_url=track_url,
+    )
+
 
 
 @app.route("/play")
