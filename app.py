@@ -185,7 +185,7 @@ def vu():
         except:
             return "<font color=red size=15>Wrong Video ID</font> <br>"
     s = requests.Session()
-    data = s.get(video_url)
+    data = s.get(video_id)
     data = data.text
     vidlinks = re.findall("sources(.*?).m3u8" , data)
     vidlinks = vidlinks[0] + ".m3u8"
