@@ -194,8 +194,7 @@ def vu():
     video_name = "SdPyayer"
     track_url = video_url
     return render_template(
-        "temp_ads.html",
-        type="jw",
+        "m3u8.html",
         video_name=video_name,
         video_url=video_url,
         track_url=track_url,
