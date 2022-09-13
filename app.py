@@ -59,6 +59,8 @@ def checker_page():
         return streamtape()
     if chk_type.lower() == "vu":
         return vu()
+    if chk_type.lower() == "yd":
+        return yd()
     return 
 
 @app.route("/yt")
@@ -199,6 +201,43 @@ def vu():
         video_url=video_url,
         track_url=track_url,
     )
+
+
+@app.route("/vu")
+def yd():
+    try:
+        video_id = request.args['id']
+    except Exception as e:
+        edata = "Please parse ?id= when calling the api"
+        return edata
+    try:
+        encypted = request.args['en']
+    except Exception as e:
+        encypted = 1
+    if encypted == "0":
+        video_id = video_id
+    else:
+        try:
+            video_id = b64_to_str(video_id)
+        except:
+            return "<font color=red size=15>Wrong Video ID</font> <br>"
+    s = requests.Session()
+    data = s.get(video_id)
+    data = data.text
+    vidlinks = re.findall("src(.*?).mp4" , data)
+    vidlinks = vidlinks[0] + ".mp4"
+    vidlinks = re.sub(r'.', '', vidlinks, count = 2)
+    video_url = vidlinks
+    video_name = "SdPyayer"
+    track_url = video_url
+    return render_template(
+        "temp.html
+        type="jw",
+        video_name=video_name,
+        video_url=video_url,
+        track_url=track_url,
+    )
+
 
 
 
