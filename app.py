@@ -240,8 +240,8 @@ def yd():
     )
 
 
-@app.route("/stream")
-def streamtape():
+@app.route("/gdrive")
+def gdrive():
     try:
         video_id = request.args['id']
     except Exception as e:
