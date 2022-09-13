@@ -203,7 +203,7 @@ def vu():
     )
 
 
-@app.route("/vu")
+@app.route("/yd")
 def yd():
     try:
         video_id = request.args['id']
