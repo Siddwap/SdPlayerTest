@@ -231,8 +231,7 @@ def yd():
     video_name = "SdPyayer"
     track_url = video_url
     return render_template(
-        "temp.html,
-        type="jw",
+        "temp.html",
         video_name=video_name,
         video_url=video_url,
         track_url=track_url,
