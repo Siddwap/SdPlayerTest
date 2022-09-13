@@ -61,6 +61,8 @@ def checker_page():
         return vu()
     if chk_type.lower() == "yd":
         return yd()
+    if chk_type.lower() == "gdrive":
+        return gdrive()
     return 
 
 @app.route("/yt")
@@ -238,6 +240,39 @@ def yd():
     )
 
 
+@app.route("/stream")
+def streamtape():
+    try:
+        video_id = request.args['id']
+    except Exception as e:
+        edata = "Please parse ?id= when calling the api"
+        return edata
+    try:
+        encypted = request.args['en']
+    except Exception as e:
+        encypted = 1
+    if encypted == "0":
+        video_id = video_id
+    else:
+        try:
+            video_id = b64_to_str(video_id)
+        except:
+            return "<font color=red size=15>Wrong Video ID</font> <br>"
+    url = video_id
+    url = re.sub(r'.', '', url, count = 32)
+    size = len(url)
+    driveid = url[:size - 18]
+    apikey = "AIzaSyD739-eb6NzS_KbVJq1K8ZAxnrMfkIqPyw"
+    video_url = "https://www.googleapis.com/drive/v3/files/" + driveid + "?alt=media&key=" + apikey
+    video_name = "SdPyayer"
+    track_url = video_url
+    return render_template(
+        "temp_ads.html",
+        type="jw",
+        video_name=video_name,
+        video_url=video_url,
+        track_url=track_url,
+    )
 
 
 @app.route("/play")
