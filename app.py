@@ -423,6 +423,27 @@ def brightcove():
         widevine_url=widevine_url,
         microsoft_url=microsoft_url
     )
+@app.route("/dp")
+def dp();
+    try:
+        video_id = request.args['id']
+    except Exception as e:
+        edata = "Please parse ?id= when calling the api"
+        return edata
+    video_id = video_id
+    video_url = video_id
+    track_url = video_id
+    video_name = video_id.split("/")[-1]
+    return render_template(
+        "temp.html",
+        type="jw",
+        video_name=unquote_plus(video_name),
+        video_url=video_url,
+        track_url=track_url,
+    )
+    
+    
+
 
 if __name__ == "__main__":
     app.run(debug=True)
