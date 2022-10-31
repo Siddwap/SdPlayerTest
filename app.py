@@ -424,8 +424,8 @@ def brightcove():
         microsoft_url=microsoft_url
     )
 @app.route("/dp/")
-def dp(video_id):
-    video_id = f{"video_id"} 
+def dp():
+    video_id = video_id
     video_url = video_id
     track_url = video_id
     video_name = video_id.split("/")[-1]
