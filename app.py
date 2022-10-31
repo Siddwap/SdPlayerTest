@@ -424,7 +424,7 @@ def brightcove():
         microsoft_url=microsoft_url
     )
 @app.route("/dp")
-def dp();
+def dp():
     try:
         video_id = request.args['id']
     except Exception as e:
