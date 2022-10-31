@@ -425,7 +425,7 @@ def brightcove():
     )
 @app.route("/dp")
 def dp():
-    video_id = id
+    video_id = request.args['id']
     video_url = video_id
     track_url = video_id
     video_name = video_id.split("/")[-1]
