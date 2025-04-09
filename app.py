@@ -60,6 +60,8 @@ def checker_page():
         return vu()
     if chk_type.lower() == "yd":
         return yd()
+    if chk_type.lower() == "cw":
+        return cw()
     if chk_type.lower() == "gdrive":
         return gdrive()
     return 
