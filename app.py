@@ -5,7 +5,6 @@
 
 import os
 import requests
-import re, requests
 import sys
 from urllib.parse import unquote_plus
 from flask import Flask, jsonify, request
@@ -327,7 +326,7 @@ def m3u8():
         video_url=video_url,
         track_url=video_url
     )
-
+@app.route("/cw")
 def cw():
     try:
         video_url = request.args['id']
