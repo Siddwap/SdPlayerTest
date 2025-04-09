@@ -41,7 +41,7 @@ def checker_page():
     try:
         chk_type = request.args['type']
     except:
-        return "<font color=red size=15>Wrong Video Type</font> <br> ask at @JV_Community in Telegram"
+        return "<font color=red size=15>Wrong Video Type</font> <br>"
     if chk_type.lower() == "mpd":
         return mpd()
     if chk_type.lower() == "m3u8":
@@ -83,7 +83,7 @@ def youtube():
         try:
             video_id = b64_to_str(video_id)
         except:
-            return "<font color=red size=15>Wrong Video ID</font> <br> ask at @JV_Community in Telegram"
+            return "<font color=red size=15>Wrong Video ID</font> <br>"
     if ("youtube.com" in video_id) and ("/" in video_id) and ("=" in video_id):
         url = video_id
     elif ("youtu.be" in video_id) and ("/" in video_id):
@@ -347,9 +347,7 @@ def cw():
         except:
             return "<font color=red size=15>Wrong Video ID</font> <br> ask at @JV_Community in Telegram"
 
-    video_url= (
-    f"https://edge.api.brightcove.com/playback/v1/accounts/6206459123001/videos/{video_id}/master.m3u8?bcov_auth=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDQxMzExMjMsImNvbiI6eyJpc0FkbWluIjpmYWxzZSwiYXVzZXIiOiJVMFZ6TkdGU2NuQlZjR3h5TkZwV09FYzBURGxOZHowOSIsImlkIjoiU2l0c1pFNXFZamhuY1ZKaGNsRklNRmREWlhOUlVUMDkiLCJmaXJzdF9uYW1lIjoiYWtKdU5IZ3pRelpOVml0V04ySnRRVVo0ZG1KVmR6MDkiLCJlbWFpbCI6IlZFRTFlR0pEVGk5UlVqQmtjMEZzYkdOU2IzaEZPSFJPWlRKNk5YSlFWazlHYjNKUk9HTXpPSGxpTUQwPSIsInBob25lIjoiVERGbFIwODNWbU4yV1RoalNtZFlaVWRQTTBWNFVUMDkiLCJhdmF0YXIiOiJLM1ZzY1M4elMwcDBRbmxrYms4M1JEbHZla05pVVQwOSIsInJlZmVycmFsX2NvZGUiOiJRak15WVRsYVdEQlphWEpWYnpoM09GTnpja2xuWnowOSIsImRldmljZV90eXBlIjoiYW5kcm9pZCIsImRldmljZV92ZXJzaW9uIjoiUGllKEFuZHJvaWQgOS4wKSIsImRldmljZV9tb2RlbCI6Ik9uZVBsdXMgUEhCMTEwIiwicmVtb3RlX2FkZHIiOiIzNC4yMzEuMTIyLjE1NSJ9fQ.UdZIYfVf7UpyU4zSzGSsjnGPu8PsSSBDMPHeOTmoYdTrsNTTW2anisT5f1nVHxfbhBKEZCuoQ9lf9IZ0CAX3Bry1AHmoLNZN3B1mhgoVIUdkufcD1UNPMd-JLYFHiWpo2gThLUHGyir_1p_IqhWXZca797uXHw5VVjvDThR924cXUMZApR5p2sT3onG_P3hBYjhppouS27E18VSyEJgXg0MZXPmROVhC76rBfjMFdQ0TldT9UBLj9ID7eboowZ7_eJPHsSZw0qzG_E5Q6lGsJX5RZkcePB5Fc52WsC9gZjbgDhS9VMUV1bwizxnDgaNwdmQSPpVtbBbh_9tnCy5FtQ"
-    )
+    video_url= f"https://edge.api.brightcove.com/playback/v1/accounts/6206459123001/videos/{video_id}/master.m3u8?bcov_auth=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDQxMzExMjMsImNvbiI6eyJpc0FkbWluIjpmYWxzZSwiYXVzZXIiOiJVMFZ6TkdGU2NuQlZjR3h5TkZwV09FYzBURGxOZHowOSIsImlkIjoiU2l0c1pFNXFZamhuY1ZKaGNsRklNRmREWlhOUlVUMDkiLCJmaXJzdF9uYW1lIjoiYWtKdU5IZ3pRelpOVml0V04ySnRRVVo0ZG1KVmR6MDkiLCJlbWFpbCI6IlZFRTFlR0pEVGk5UlVqQmtjMEZzYkdOU2IzaEZPSFJPWlRKNk5YSlFWazlHYjNKUk9HTXpPSGxpTUQwPSIsInBob25lIjoiVERGbFIwODNWbU4yV1RoalNtZFlaVWRQTTBWNFVUMDkiLCJhdmF0YXIiOiJLM1ZzY1M4elMwcDBRbmxrYms4M1JEbHZla05pVVQwOSIsInJlZmVycmFsX2NvZGUiOiJRak15WVRsYVdEQlphWEpWYnpoM09GTnpja2xuWnowOSIsImRldmljZV90eXBlIjoiYW5kcm9pZCIsImRldmljZV92ZXJzaW9uIjoiUGllKEFuZHJvaWQgOS4wKSIsImRldmljZV9tb2RlbCI6Ik9uZVBsdXMgUEhCMTEwIiwicmVtb3RlX2FkZHIiOiIzNC4yMzEuMTIyLjE1NSJ9fQ.UdZIYfVf7UpyU4zSzGSsjnGPu8PsSSBDMPHeOTmoYdTrsNTTW2anisT5f1nVHxfbhBKEZCuoQ9lf9IZ0CAX3Bry1AHmoLNZN3B1mhgoVIUdkufcD1UNPMd-JLYFHiWpo2gThLUHGyir_1p_IqhWXZca797uXHw5VVjvDThR924cXUMZApR5p2sT3onG_P3hBYjhppouS27E18VSyEJgXg0MZXPmROVhC76rBfjMFdQ0TldT9UBLj9ID7eboowZ7_eJPHsSZw0qzG_E5Q6lGsJX5RZkcePB5Fc52WsC9gZjbgDhS9VMUV1bwizxnDgaNwdmQSPpVtbBbh_9tnCy5FtQ"
     return render_template(
         "m3u8.html",
         video_url= video_url,
