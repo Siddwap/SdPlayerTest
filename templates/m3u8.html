@@ -1,3 +1,4 @@
+
 <html>
 <head>
   <title>m3u8 Player || SdPlayer</title>
@@ -11,7 +12,7 @@
   <script src="https://cdn.jsdelivr.net/npm/hls.js"></script>
 </head>
 <style>
-html {
+  html {
   font-family: Poppins;
   background: #000;
   margin: 0;
@@ -147,7 +148,7 @@ a.float:hover + div.label-container {
   </div>
 
   <video controls crossorigin playsinline>
-    <source type="application/x-mpegURL" src="{{ video_url }}">
+    <source type="application/x-mpegURL" src="https://edge.api.brightcove.com/playback/v1/accounts/6206459123001/videos/6223972887001/master.m3u8?bcov_auth=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDQxMzExMjMsImNvbiI6eyJpc0FkbWluIjpmYWxzZSwiYXVzZXIiOiJVMFZ6TkdGU2NuQlZjR3h5TkZwV09FYzBURGxOZHowOSIsImlkIjoiU2l0c1pFNXFZamhuY1ZKaGNsRklNRmREWlhOUlVUMDkiLCJmaXJzdF9uYW1lIjoiYWtKdU5IZ3pRelpOVml0V04ySnRRVVo0ZG1KVmR6MDkiLCJlbWFpbCI6IlZFRTFlR0pEVGk5UlVqQmtjMEZzYkdOU2IzaEZPSFJPWlRKNk5YSlFWazlHYjNKUk9HTXpPSGxpTUQwPSIsInBob25lIjoiVERGbFIwODNWbU4yV1RoalNtZFlaVWRQTTBWNFVUMDkiLCJhdmF0YXIiOiJLM1ZzY1M4elMwcDBRbmxrYms4M1JEbHZla05pVVQwOSIsInJlZmVycmFsX2NvZGUiOiJRak15WVRsYVdEQlphWEpWYnpoM09GTnpja2xuWnowOSIsImRldmljZV90eXBlIjoiYW5kcm9pZCIsImRldmljZV92ZXJzaW9uIjoiUGllKEFuZHJvaWQgOS4wKSIsImRldmljZV9tb2RlbCI6Ik9uZVBsdXMgUEhCMTEwIiwicmVtb3RlX2FkZHIiOiIzNC4yMzEuMTIyLjE1NSJ9fQ.UdZIYfVf7UpyU4zSzGSsjnGPu8PsSSBDMPHeOTmoYdTrsNTTW2anisT5f1nVHxfbhBKEZCuoQ9lf9IZ0CAX3Bry1AHmoLNZN3B1mhgoVIUdkufcD1UNPMd-JLYFHiWpo2gThLUHGyir_1p_IqhWXZca797uXHw5VVjvDThR924cXUMZApR5p2sT3onG_P3hBYjhppouS27E18VSyEJgXg0MZXPmROVhC76rBfjMFdQ0TldT9UBLj9ID7eboowZ7_eJPHsSZw0qzG_E5Q6lGsJX5RZkcePB5Fc52WsC9gZjbgDhS9VMUV1bwizxnDgaNwdmQSPpVtbBbh_9tnCy5FtQ">
   </video>
 </body>
 <script>
@@ -160,117 +161,92 @@ a.float:hover + div.label-container {
     const video = document.querySelector("video");
     const source = video.getElementsByTagName("source")[0].src;
     const options = {
-      quality: {
-        default: null,
-        options: [],
-        forced: true,
-        onChange: (height) => {
-          window.hls.levels.forEach((level, index) => {
-            if (level.height === height) {
-              window.hls.currentLevel = index;
-            }
-          });
-        }
-      },
-      previewThumbnails: {
-        enabled: true,
-        src: '{{ track_url }}'
-      },
-      tooltips: { controls: true, seek: true },
-      // Add custom controls
-      controls: [
-      'play-large', // The large play button in the center
-	      'rewind',
-              'play', 
-	      'fast-forward',
-              'progress', // The progress bar and scrubber for playback and buffering
-              'current-time', // The current time of playback
-              'duration', // The full duration of the media
-              'settings', // Settings menu
-              'pip', // Picture-in-picture (currently Safari only)
-              'airplay', // Airplay (currently Safari only)
-              'download', // Show a download button with a link to either the current source or a custom URL you specify in your options
-              'fullscreen', // Toggle fullscreen
-        'stretch' // Custom stretch button
-      ]
+        quality: {},
+        previewThumbnails: { enabled: true, src: '{{ track_url }}' },
+        tooltips: { controls: true, seek: true },
+        controls: [
+            'play-large', // The large play button in the center
+            'rewind',
+            'play',
+            'fast-forward',
+            'progress', // The progress bar and scrubber for playback and buffering
+            'current-time', // The current time of playback
+            'duration', // The full duration of the media
+            'settings', // Settings menu
+            'pip', // Picture-in-picture (currently Safari only)
+            'airplay', // Airplay (currently Safari only)
+            'download', // Show a download button with a link to either the current source or a custom URL you specify in your options
+            'fullscreen', // Toggle fullscreen
+            'stretch' // Custom stretch button
+        ]
     };
 
-    // Initialize Plyr
-    const player = new Plyr(video, options);
-
-    // Stretch functionality
-    const stretchButton = document.createElement('button');
-    stretchButton.textContent = 'Stretch';
-    stretchButton.className = 'plyr__control plyr__control--stretch';
-    stretchButton.title = 'Stretch Video';
-    stretchButton.addEventListener('click', () => {
-      if (video.style.objectFit === 'fill') {
-        video.style.objectFit = 'contain'; // Reset to contain
-        stretchButton.textContent = 'Stretch'; // Change button text
-      } else {
-        video.style.objectFit = 'fill'; // Set to fill (stretch)
-        stretchButton.textContent = 'Reset'; // Change button text
-      }
-    });
-
-    // Append the stretch button to controls
-    const controls = document.querySelector('.plyr__controls');
-    controls.appendChild(stretchButton);
-
     if (Hls.isSupported()) {
-      const hls = new Hls({
-        maxMaxBufferLength: 100,
-      });
-      hls.loadSource(source);
-      hls.on(Hls.Events.MANIFEST_PARSED, (event, data) => {
-        const levels = hls.levels.map(level => level.height);
-        options.quality.default = levels[0];
-        options.quality.options = levels;
-        player.quality = options.quality;
-      });
-      hls.attachMedia(video);
-      window.hls = hls;
+        const config = { maxMaxBufferLength: 100 };
+        const hls = new Hls(config);
+        hls.loadSource(source);
+        
+        hls.on(Hls.Events.MANIFEST_PARSED, function(event, data) {
+            const qualityLevels = hls.levels.map(level => level.height);
+            options.quality = {
+                default: qualityLevels[0],
+                options: qualityLevels,
+                forced: true,
+                onChange: (height) => {
+                    window.hls.levels.forEach((level, index) => {
+                        if (level.height === height) {
+                            window.hls.currentLevel = index;
+                        }
+                    });
+                }
+            };
+
+            // Initialize Plyr with options
+            const player = new Plyr(video, options);
+            
+            // Add Stretch Button
+            const stretchButton = document.createElement('button');
+            stretchButton.textContent = 'Stretch';
+            stretchButton.className = 'plyr__control plyr__control--stretch';
+            stretchButton.title = 'Stretch Video';
+            stretchButton.addEventListener('click', () => {
+                if (video.style.objectFit === 'fill') {
+                    video.style.objectFit = 'contain'; // Reset to contain
+                    stretchButton.textContent = 'Stretch'; // Change button text
+                } else {
+                    video.style.objectFit = 'fill'; // Set to fill (stretch)
+                    stretchButton.textContent = 'Reset'; // Change button text
+                }
+            });
+
+            // Append the stretch button to controls
+            const controls = document.querySelector('.plyr__controls');
+            controls.appendChild(stretchButton);
+
+            // Lock orientation on fullscreen
+            player.on('enterfullscreen', () => {
+                if (screen.orientation && screen.orientation.lock) {
+                    screen.orientation.lock('landscape').catch(err => {
+                        console.error('Orientation lock failed:', err);
+                    });
+                } else {
+                    console.warn('Screen Orientation API not supported');
+                }
+            });
+
+            // Unlock orientation on exit fullscreen
+            player.on('exitfullscreen', () => {
+                if (screen.orientation && screen.orientation.unlock) {
+                    screen.orientation.unlock();
+                }
+            });
+        });
+        
+        hls.attachMedia(video);
+        window.hls = hls;
+    } else {
+        new Plyr(video, options);
     }
-
-    // Function to lock orientation
-    function lockOrientation() {
-      if (screen.orientation && screen.orientation.lock) {
-        screen.orientation.lock('landscape-primary')
-          .catch(err => {
-            console.error('Orientation lock failed:', err);
-            // Fallback: Prompt user to rotate device
-            if (!alertShown) {
-              alert('Please rotate your device to landscape for the best experience.');
-              alertShown = true;
-            }
-          });
-      } else {
-        console.warn('Screen Orientation API not supported');
-        if (!alertShown) {
-          alert('Please rotate your device to landscape for the best experience.');
-          alertShown = true;
-        }
-      }
-    }
-
-    // Function to unlock orientation
-    function unlockOrientation() {
-      if (screen.orientation && screen.orientation.unlock) {
-        screen.orientation.unlock();
-      }
-    }
-
-    let alertShown = false;
-
-    // Listen for Plyr fullscreen events
-    player.on('enterfullscreen', () => {
-      lockOrientation();
-    });
-
-    player.on('exitfullscreen', () => {
-      unlockOrientation();
-      alertShown = false; // Reset alert for next fullscreen entry
-    });
-  });
+});
 </script>
 </html>
